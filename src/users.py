@@ -30,9 +30,9 @@ def save_profiles(profiles: list, filepath: Path) -> str:
 if __name__ == "__main__":
     helpers.create_folder()
     save_profiles(profiles=generate_profiles(), filepath=Path("temp", FILENAME))
-    access_key = os.getenv("access_key")
-    secret_key = os.getenv("secret_access_key")
-    bucket_name = os.getenv("bucket_name")
+    access_key = os.getenv("ACCESS_KKEY")
+    secret_key = os.getenv("SECRET_KEY")
+    bucket_name = os.getenv("BUCKET")
 
     s3 = boto3.client("s3", aws_access_key_id=access_key, aws_secret_access_key=secret_key)
     s3.upload_file(str(Path("temp", FILENAME)), bucket_name, FILENAME)
