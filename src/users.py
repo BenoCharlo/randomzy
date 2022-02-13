@@ -1,15 +1,12 @@
-import os
 import datetime
 import random
 from pathlib import Path
 
-import boto3
 import pandas as pd
 from faker import Faker
 from faker.providers import profile
 
 import settings as settings
-import helpers as helpers
 
 N_PROFILES = random.randint(settings.MIN_PROFILES, settings.MAX_PROFILES)
 FILENAME = str(datetime.datetime.now()).replace(" ", "_") + ".csv"
@@ -25,16 +22,3 @@ def generate_profiles() -> list:
 
 def save_profiles(profiles: list, filepath: Path) -> str:
     return pd.DataFrame(profiles).to_csv(filepath, sep="|", index=False)
-
-
-if __name__ == "__main__":
-    helpers.create_folder()
-    save_profiles(profiles=generate_profiles(), filepath=Path("temp", FILENAME))
-    access_key = os.getenv("ACCESS_KKEY")
-    secret_key = os.getenv("SECRET_KEY")
-    bucket_name = os.getenv("BUCKET")
-
-    s3 = boto3.client("s3", aws_access_key_id=access_key, aws_secret_access_key=secret_key)
-    s3.upload_file(str(Path("temp", FILENAME)), bucket_name, FILENAME)
-
-    helpers.delete_folder()
