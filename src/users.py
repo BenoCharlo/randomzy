@@ -23,14 +23,12 @@ def generate_profiles() -> list:
     return [fake.profile() for _ in range(N_PROFILES)]
 
 
-helpers.create_folder()
-
-
 def save_profiles(profiles: list, filepath: Path) -> str:
     return pd.DataFrame(profiles).to_csv(filepath, sep="|", index=False)
 
 
 if __name__ == "__main__":
+    helpers.create_folder()
     save_profiles(profiles=generate_profiles(), filepath=Path("temp", FILENAME))
     access_key = os.getenv("access_key")
     secret_key = os.getenv("secret_access_key")
