@@ -7,8 +7,8 @@ import pandas as pd
 from faker import Faker
 from faker.providers import profile
 
-import settings
-import helpers
+import src.settings as settings
+import src.helpers as helpers
 
 N_PROFILES = random.randint(settings.MIN_PROFILES, settings.MAX_PROFILES)
 FILENAME = str(datetime.datetime.now()).replace(" ", "_") + ".csv"
