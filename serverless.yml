@@ -1,0 +1,38 @@
+# Welcome to Serverless!
+service: randomzy
+provider:
+  name: aws
+  region: eu-west-3
+  runtime: python3.9
+  memorySize: 3008
+  timeout: 900
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource:
+        - arn:aws:s3:::${env:BUCKET}
+        - arn:aws:s3:::${env:BUCKET}/*
+
+package:
+  exclude:
+    - node_modules/**
+    - __pycache__/**
+
+functions:
+  generate_users:
+    handler: handler.generate_users
+    events:
+      - schedule: cron(0 23 ? * * *)
+    environment:
+      app_key: ${env:ACCESS_KEY}
+      app_secret: ${env:SECRET_KKEY}
+      bucket: ${env:BUCKET}
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  region: eu-west-3
+  pythonRequirements:
+    dockerizePip: non-linux
