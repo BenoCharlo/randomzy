@@ -25,8 +25,8 @@ functions:
     events:
       - schedule: cron(0 23 ? * * *)
     environment:
-      app_key: ${env:ACCESS_KEY}
-      app_secret: ${env:SECRET_KKEY}
+      access_key: ${env:ACCESS_KEY}
+      secret_key: ${env:SECRET_KEY}
       bucket: ${env:BUCKET}
 
 plugins:
