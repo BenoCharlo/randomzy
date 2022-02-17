@@ -14,7 +14,9 @@ FILENAME = str(datetime.datetime.now()).replace(" ", "_") + ".csv"
 
 def main(event, context):
     helpers.create_folder()
-    users.save_profiles(profiles=users.generate_profiles(N_PROFILES), filepath=Path("temp", FILENAME))
+    users.save_profiles(
+        profiles=users.generate_profiles(N_PROFILES), filepath=Path(settings.TEMP_FOLDER, FILENAME)
+    )
     access_key = os.getenv("ACCESS_KEY")
     secret_key = os.getenv("SECRET_KEY")
     bucket_name = os.getenv("BUCKET")
