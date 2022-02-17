@@ -12,7 +12,7 @@ N_PROFILES = random.randint(settings.MIN_PROFILES, settings.MAX_PROFILES)
 FILENAME = str(datetime.datetime.now()).replace(" ", "_") + ".csv"
 
 
-def generate_users(event, context):
+def main(event, context):
     helpers.create_folder()
     users.save_profiles(profiles=users.generate_profiles(N_PROFILES), filepath=Path("temp", FILENAME))
     access_key = os.getenv("ACCESS_KEY")
@@ -26,4 +26,4 @@ def generate_users(event, context):
 
 
 if __name__ == "__main__":
-    generate_users("", "")
+    main("", "")
