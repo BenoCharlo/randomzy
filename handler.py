@@ -22,7 +22,7 @@ def main(event, context):
     bucket_name = os.getenv("BUCKET")
 
     s3 = boto3.client("s3", aws_access_key_id=access_key, aws_secret_access_key=secret_key)
-    s3.upload_file(str(Path("temp", FILENAME)), bucket_name, FILENAME)
+    s3.upload_file(str(Path(settings.TEMP_FOLDER, FILENAME)), bucket_name, FILENAME)
 
     helpers.delete_folder()
 
