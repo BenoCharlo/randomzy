@@ -6,19 +6,21 @@ provider:
   runtime: python3.7
   memorySize: 3008
   timeout: 900
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - "s3:*"
-      Resource:
-        - arn:aws:s3:::${env:BUCKET}
-        - arn:aws:s3:::${env:BUCKET}/*
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "s3:*"
+          Resource:
+            - arn:aws:s3:::${env:BUCKET}
+            - arn:aws:s3:::${env:BUCKET}/*
 
 package:
   patterns:
     - "!node_modules/**"
     - "!venv/**"
-    - "!__pycache__/**"
+    - "!**__pycache__/**"
 
 functions:
   generate_users:
