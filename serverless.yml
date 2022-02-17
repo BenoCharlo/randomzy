@@ -3,7 +3,7 @@ service: randomzy
 provider:
   name: aws
   region: eu-west-3
-  runtime: python3.9
+  runtime: python3.7
   memorySize: 3008
   timeout: 900
   iamRoleStatements:
@@ -15,24 +15,23 @@ provider:
         - arn:aws:s3:::${env:BUCKET}/*
 
 package:
-  exclude:
-    - node_modules/**
-    - __pycache__/**
+  patterns:
+    - "!node_modules/**"
+    - "!venv/**"
+    - "!__pycache__/**"
 
 functions:
   generate_users:
-    handler: handler.generate_users
-    events:
-      - schedule: cron(0 23 ? * * *)
+    handler: handler.main
     environment:
       access_key: ${env:ACCESS_KEY}
       secret_key: ${env:SECRET_KEY}
       bucket: ${env:BUCKET}
 
-plugins:
-  - serverless-python-requirements
-
 custom:
   region: eu-west-3
   pythonRequirements:
     dockerizePip: non-linux
+
+plugins:
+  - serverless-python-requirements
