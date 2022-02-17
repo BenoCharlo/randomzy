@@ -1,14 +1,12 @@
 import shutil
 import os
 
-from . import settings
+
+def create_folder(output_path: str):
+    os.mkdir(output_path)
+    print(f'{"=" * 5} + "Creation of {output_path} done" + {"=" * 5}')
 
 
-def create_folder(folder_name: str = settings.TEMP_FOLDER):
-    os.makedirs(folder_name, exist_ok=True)
-    return f'"=" * 5 + "Creation of {folder_name} done" + "=" * 5'
-
-
-def delete_folder(folder_name: str = settings.TEMP_FOLDER):
-    shutil.rmtree(os.path.join(folder_name))
-    return f'"=" * 5 + "Deletion of {folder_name} done" + "=" * 5'
+def delete_folder(output_path: str):
+    shutil.rmtree(os.path.join(output_path))
+    print(f'{"=" * 5} + "Deletion of {output_path} done" + {"=" * 5}')
