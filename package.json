@@ -17,7 +17,7 @@
     "url": "https://github.com/BenoCharlo/randomzy/issues"
   },
   "homepage": "https://github.com/BenoCharlo/randomzy#readme",
-  "dependencies": {
+  "devDependencies": {
     "serverless-python-requirements": "^5.3.1"
   }
 }
