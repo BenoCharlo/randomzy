@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path
 
-import settings
+from . import settings
 
 
 def create_folder(folder_name: str = settings.TEMP_FOLDER):
