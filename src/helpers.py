@@ -1,12 +1,12 @@
 import shutil
-import os
+from pathlib import Path
 
 
 def create_folder(output_path: str):
-    os.mkdir(output_path)
+    Path(output_path).mkdir(exist_ok=True)
     print(f'{"=" * 5} + "Creation of {output_path} done" + {"=" * 5}')
 
 
 def delete_folder(output_path: str):
-    shutil.rmtree(os.path.join(output_path))
+    shutil.rmtree(Path(output_path))
     print(f'{"=" * 5} + "Deletion of {output_path} done" + {"=" * 5}')
