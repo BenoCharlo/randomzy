@@ -1,3 +1,3 @@
 MAX_PROFILES = 1e2
 MIN_PROFILES = 1e1
-TEMP_FOLDER = "data/"
+TEMP_FOLDER = "s3_data/"
