@@ -13,4 +13,7 @@ I then decided to add a wrapper around the pipeline above to consider LocalStack
 
 --Add new pipeline image
 
+## Resources
+[1] : https://docs.localstack.cloud/integrations/serverless-framework/
+
 &copy; *Beno-Charles DOKODJO, Technology | Serverless | Cloud*
